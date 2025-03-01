@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://eude0dv75ijo"
+path="res://.godot/imported/Fireball2.wav-9d30b5f96318462af8cae7e13fbc978e.sample"
+
+[deps]
+
+source_file="res://Ninja Adventure - Asset Pack/Sounds/Game/Fireball2.wav"
+dest_files=["res://.godot/imported/Fireball2.wav-9d30b5f96318462af8cae7e13fbc978e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

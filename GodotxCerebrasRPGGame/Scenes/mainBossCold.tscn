@@ -1,0 +1,125 @@
+[gd_scene load_steps=10 format=3 uid="uid://qc1p7cqrtlbo"]
+
+[ext_resource type="Script" path="res://Scenes/main_boss.gd" id="1_7t6fg"]
+[ext_resource type="Texture2D" uid="uid://dv4wlwnfsvudt" path="res://Ninja Adventure - Asset Pack/Actor/Boss/MainBossCold/frost_guardian_free_192x128_SpriteSheet.png" id="2_wrus7"]
+
+[sub_resource type="Animation" id="Animation_slgn7"]
+resource_name = "Die"
+length = 3.0
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4, 2.6, 2.8, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 4), Vector2i(1, 4), Vector2i(2, 4), Vector2i(3, 4), Vector2i(4, 4), Vector2i(5, 4), Vector2i(6, 4), Vector2i(7, 4), Vector2i(8, 4), Vector2i(9, 4), Vector2i(10, 4), Vector2i(11, 4), Vector2i(12, 4), Vector2i(13, 4), Vector2i(14, 4), Vector2i(21, 4)]
+}
+
+[sub_resource type="Animation" id="Animation_iucqj"]
+resource_name = "Idle"
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(2, 0), Vector2i(2, 0), Vector2i(3, 0), Vector2i(4, 0), Vector2i(5, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vq86x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8enm0"]
+resource_name = "attack"
+length = 1.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2), Vector2i(4, 2), Vector2i(5, 2), Vector2i(6, 2), Vector2i(7, 2), Vector2i(8, 2), Vector2i(9, 2), Vector2i(13, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_gooao"]
+resource_name = "hit"
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 3), Vector2i(1, 3), Vector2i(2, 3), Vector2i(3, 3), Vector2i(4, 3)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4mox1"]
+_data = {
+"Die": SubResource("Animation_slgn7"),
+"Idle": SubResource("Animation_iucqj"),
+"RESET": SubResource("Animation_vq86x"),
+"attack": SubResource("Animation_8enm0"),
+"hit": SubResource("Animation_gooao")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vtuxx"]
+radius = 8.0
+height = 28.0
+
+[node name="MainBossCold" type="CharacterBody2D" groups=["NPC"]]
+script = ExtResource("1_7t6fg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-13, -27)
+scale = Vector2(0.50363, 0.560625)
+texture = ExtResource("2_wrus7")
+hframes = 16
+vframes = 5
+
+[node name="Animations" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4mox1")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-5, -15)
+shape = SubResource("CapsuleShape2D_vtuxx")
+
+[node name="ProgressBar" type="ProgressBar" parent="CollisionShape2D"]
+offset_left = -10.5263
+offset_top = 17.3077
+offset_right = 11.4737
+offset_bottom = 35.3077
+theme_override_font_sizes/font_size = 10
